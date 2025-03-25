@@ -1,6 +1,9 @@
 package com.mega.auth.module.auth.service;
 
 import com.mega.auth.configuration.ModelMapperConfig;
+import com.mega.auth.module.permission.dto.ListPermissionDto;
+import com.mega.auth.module.permission.entity.Permission;
+import com.mega.auth.module.permission.repository.PermissionRepository;
 import com.mega.auth.module.role.entity.Role;
 import com.mega.auth.module.role.repository.RoleRepository;
 import com.mega.auth.module.user.dto.LoginUserResponseDto;
@@ -15,11 +18,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PermissionRepository permissionRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final ModelMapperConfig modelMapper;
     private final JwtUtil jwtUtil;
@@ -52,9 +59,21 @@ public class AuthServiceImpl implements AuthService {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
+
         LoginUserResponseDto loginUserResponseDto = modelMapper
                 .modelMapper()
                 .map(user, LoginUserResponseDto.class);
+        List<ListPermissionDto> listPermissionDtos = new ArrayList<>();
+        List<Permission> permissionByRole = permissionRepository.findByRoleId(user.getRole().getId());
+
+        for (Permission permission : permissionByRole) {
+            ListPermissionDto listPermissionDto = modelMapper
+                    .modelMapper()
+                    .map(permission, ListPermissionDto.class);
+            listPermissionDtos.add(listPermissionDto);
+        }
+
+        loginUserResponseDto.setPermissions(listPermissionDtos);
         loginUserResponseDto.setToken(jwtUtil.generateToken(user.getUsername(), user.getRole().getName()));
         return loginUserResponseDto;
     }

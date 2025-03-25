@@ -11,4 +11,5 @@ import java.util.List;
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
     @Query("SELECT p FROM Permission p WHERE p.deletedAt IS NULL")
     List<Permission> findAllActivePermissions();
+    List<Permission> findByRoleId(Long roleId);
 }
