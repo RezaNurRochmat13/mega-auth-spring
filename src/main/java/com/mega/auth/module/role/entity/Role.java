@@ -1,6 +1,7 @@
 package com.mega.auth.module.role.entity;
 
 import com.mega.auth.module.permission.entity.Permission;
+import com.mega.auth.module.user.entity.User;
 import com.mega.auth.utils.auditing.Auditing;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,6 +19,9 @@ public class Role extends Auditing {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     List<Permission> permissions;
+
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    List<User> users;
 }
