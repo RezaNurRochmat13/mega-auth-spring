@@ -1,6 +1,6 @@
 package com.mega.auth.module.auth.service;
 
-import com.mega.auth.configuration.ModelMapperConfig;
+import com.mega.auth.configuration.ModelMapperConfiguration;
 import com.mega.auth.module.auth.dto.ForgotPasswordDto;
 import com.mega.auth.module.auth.dto.UpdateUserProfile;
 import com.mega.auth.module.permission.dto.ListPermissionDto;
@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private final ModelMapperConfig modelMapper;
+    private final ModelMapperConfiguration modelMapper;
     private final JwtUtil jwtUtil;
 
     @Override

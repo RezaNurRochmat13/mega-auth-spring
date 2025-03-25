@@ -1,6 +1,6 @@
 package com.mega.auth.module.permission.service;
 
-import com.mega.auth.configuration.ModelMapperConfig;
+import com.mega.auth.configuration.ModelMapperConfiguration;
 import com.mega.auth.module.permission.dto.CreateNewPermissionDto;
 import com.mega.auth.module.permission.dto.ListPermissionDto;
 import com.mega.auth.module.permission.dto.SinglePermissionDto;
@@ -23,7 +23,7 @@ import java.util.List;
 public class PermissionServiceImpl implements PermissionService {
     private final PermissionRepository permissionRepository;
     private final RoleRepository roleRepository;
-    private final ModelMapperConfig modelMapper;
+    private final ModelMapperConfiguration modelMapper;
 
     @Override
     public List<ListPermissionDto> findAllActivePermissions() {
