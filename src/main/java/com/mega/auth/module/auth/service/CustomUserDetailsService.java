@@ -1,6 +1,6 @@
 package com.mega.auth.module.auth.service;
 
-import com.mega.auth.module.user.dto.CustomUserDetails;
+import com.mega.auth.module.auth.dto.CustomUserDetails;
 import com.mega.auth.module.user.entity.User;
 import com.mega.auth.module.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.mega.auth.configuration;
 
 import com.mega.auth.module.auth.service.CustomUserDetailsService;
-import com.mega.auth.module.user.dto.CustomUserDetails;
+import com.mega.auth.module.auth.dto.CustomUserDetails;
 import com.mega.auth.utils.jwt.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

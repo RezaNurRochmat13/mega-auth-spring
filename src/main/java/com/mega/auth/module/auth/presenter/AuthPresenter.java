@@ -2,7 +2,7 @@ package com.mega.auth.module.auth.presenter;
 
 import com.mega.auth.module.auth.dto.ForgotPasswordDto;
 import com.mega.auth.module.auth.service.AuthServiceImpl;
-import com.mega.auth.module.user.dto.RegisterUserDto;
+import com.mega.auth.module.auth.dto.RegisterUserDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.mega.auth.module.user.dto;
+package com.mega.auth.module.auth.dto;
 
 import lombok.Data;
 
