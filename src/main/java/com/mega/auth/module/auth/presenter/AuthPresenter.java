@@ -25,4 +25,12 @@ public class AuthPresenter {
         response.put("data", authService.registerUser(registerUserDto));
         return response;
     }
+
+    @PostMapping("/login")
+    public Map<String, Object> loginUser(@Valid @RequestBody RegisterUserDto registerUserDto) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("data", authService.loginUser(registerUserDto.getUsername(), registerUserDto.getPassword()));
+        return response;
+    }
 }
