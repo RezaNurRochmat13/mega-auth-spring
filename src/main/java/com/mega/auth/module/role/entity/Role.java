@@ -1,8 +1,11 @@
 package com.mega.auth.module.role.entity;
 
+import com.mega.auth.module.permission.entity.Permission;
 import com.mega.auth.utils.auditing.Auditing;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -14,4 +17,7 @@ public class Role extends Auditing {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "role")
+    List<Permission> permissions;
 }
