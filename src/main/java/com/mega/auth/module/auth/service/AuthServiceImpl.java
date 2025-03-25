@@ -2,6 +2,7 @@ package com.mega.auth.module.auth.service;
 
 import com.mega.auth.configuration.ModelMapperConfig;
 import com.mega.auth.module.auth.dto.ForgotPasswordDto;
+import com.mega.auth.module.auth.dto.UpdateUserProfile;
 import com.mega.auth.module.permission.dto.ListPermissionDto;
 import com.mega.auth.module.permission.entity.Permission;
 import com.mega.auth.module.permission.repository.PermissionRepository;
@@ -84,6 +85,18 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUsername(payload.getUsername())
                 .orElseThrow(() -> new ResourceNotFound("User not found :" + payload.getUsername()));
         user.setPassword(passwordEncoder.encode(payload.getPassword()));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUserProfile(Long id, UpdateUserProfile payload) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("User not found :" + id));
+        user.setUsername(payload.getUsername());
+        user.setEmail(payload.getEmail());
+        user.setPhone(payload.getPhone());
+        user.setAddress(payload.getAddress());
+        user.setPhoto(payload.getPhoto());
         return userRepository.save(user);
     }
 }

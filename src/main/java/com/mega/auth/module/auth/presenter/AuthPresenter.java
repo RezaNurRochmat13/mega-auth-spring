@@ -1,6 +1,7 @@
 package com.mega.auth.module.auth.presenter;
 
 import com.mega.auth.module.auth.dto.ForgotPasswordDto;
+import com.mega.auth.module.auth.dto.UpdateUserProfile;
 import com.mega.auth.module.auth.service.AuthServiceImpl;
 import com.mega.auth.module.auth.dto.RegisterUserDto;
 import jakarta.validation.Valid;
@@ -37,6 +38,14 @@ public class AuthPresenter {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
         response.put("data", authService.forgotPassword(payload));
+        return response;
+    }
+
+    @PutMapping("/profile/{id}")
+    public Map<String, Object> updateUserProfile(@PathVariable Long id, @Valid @RequestBody UpdateUserProfile payload) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("data", authService.updateUserProfile(id, payload));
         return response;
     }
 }
