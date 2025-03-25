@@ -30,15 +30,21 @@ Mega Auth Application Assessment
 - Spring Data JPA
 - Postgres Database
 - Lombok
+- Spring Security
+- Model Mapper
+- JSON Web Token
+- MinIO
 ```
 
 ## Architecture
 ```
+- Module => package for application modules
 - Presenter => package for presentation layer
 - Service => package for business logic
 - Repository => package for data access
 - Entity => package for database entities
 - Dto => package for data transfer objects
+- Utils => package for utility classes
 ```
 
 ## Contributing
